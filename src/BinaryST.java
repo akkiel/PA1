@@ -214,17 +214,17 @@ public class BinaryST {
 		// implementation
 		int rank = 0;
 		Node current = root;
-		while (current != null) {
-			if (s.equals(current.data)) {
-				return rank;
-			} else if (s.compareTo(current.data) > 0) {
-				current = current.left;
-			} else {
-				current = current.right;
-			}
-			rank+= current.occurances;
-		}
-		return -1;
+		  while (current != null) {
+		    if (s.compareTo(current.data) < 0) // move to left subtree
+		      current = current.left;
+		    else if (s.compareTo(current.data) > 0) {
+		      rank += 1 + sizeHelper(current.left);
+		      current = current.right;
+		    }
+		    else 
+		      return rank + sizeHelper(current.left);
+		  }
+		  return -1; // not found
 	}
 
 	/*****************************************************

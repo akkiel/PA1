@@ -9,20 +9,15 @@
 
 import java.util.ArrayList;
 
-
-public class WarWithHash
-{
+public class WarWithHash {
 	// member fields and methods
-	
-	public WarWithHash(String[] s, int k)
-	{
+
+	public WarWithHash(String[] s, int k) {
 		// implementation
 	}
-	
-	public ArrayList<String> compute2k()
-	{
+
+	public ArrayList<String> compute2k() {
 		// implementation
 		return null;
 	}
 }
-
