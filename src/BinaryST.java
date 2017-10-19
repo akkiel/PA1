@@ -158,9 +158,21 @@ public class BinaryST {
 			current.occurances--;
 			return true;
 		}
-		Node newNode = current.right;
-		while (current.left != null) {
+		Node newNode;
+		if (current.right != null) {
+			newNode = current.right;
+		} else if (current.left != null) {
 			newNode = current.left;
+		} else {
+			if (parent.left.data.equals(current.data)) {
+				parent.left = null;
+			} else {
+				parent.right = null;
+			}
+			return true;
+		}
+		while (newNode.left != null) {
+			newNode = newNode.left;
 		}
 		newNode.right = current.right;
 		newNode.left = current.left;
