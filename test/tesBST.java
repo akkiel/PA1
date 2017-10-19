@@ -109,8 +109,12 @@ class tesBST {
 		for(String str : stringsToAdd) {
 			bst.add(str);
 		}
-		
 		assertEquals("Rank of A should be 0", 0, bst.rankOf("A"));
 		assertEquals("Rank of B should be 3", 3, bst.rankOf("B"));
+		assertEquals("Rank of C should be 4", 4, bst.rankOf("C"));
+		assertEquals("Rank of F should be 5", 5, bst.rankOf("F"));
+		assertEquals("Rank of Y should be 6", 6, bst.rankOf("Y"));
+		bst.remove("Y");
+		assertEquals("Rank of Z shouls be 6", 6, bst.rankOf("Z"));
 	}
 }
