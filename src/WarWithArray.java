@@ -24,16 +24,21 @@ public class WarWithArray {
 
 	public ArrayList<String> compute2k() {
 		// implementation
+		// Compute canidates
 		for (int i = 0; i < s.length; i++) {
 			for (int j = i; j < s.length; j++) {
 				if (i == j) {
-					t.add(s[i] + s[j]);
+					verify(s[i] + s[j]);
 				} else {
-					t.add(s[i] + s[j]);
-					t.add(s[j] + s[i]);
+					verify(s[i] + s[j]);
+					verify(s[j] + s[i]);
 				}
 			}
 		}
 		return t;
+	}
+	
+	private void verify(String s) {
+		
 	}
 }

@@ -71,7 +71,7 @@ public class BinaryST {
 		// implementation
 		return heightHelper(root);
 	}
-	
+
 	private int heightHelper(Node n) {
 		if (n == null) {
 			return 0;
@@ -140,54 +140,20 @@ public class BinaryST {
 	}
 
 	public boolean remove(String s) {
-		// implementation
-		Node parent = root;  
-		Node current = root;
-		while (s.compareTo(current.data) != 0) {
-			if (current == null)
-				return false;
-			if (s.compareTo(current.data) < 0) {
-				parent = current;
-				current = current.left;
+		if (root == null)
+			return false;
+		else {
+			if (root.data.equals(s)) {
+				Node ar = new Node();
+				ar.left = root;
+				boolean result = root.remove(s, ar);
+				root = ar.left;
+				return result;
 			} else {
-				parent = current;
-				current = current.right;
+				return root.remove(s, null);
 			}
+
 		}
-		if (current.occurances > 1) {
-			current.occurances--;
-			return true;
-		}
-		Node newNode;
-		if (current.right != null) {
-			newNode = current.right;
-		} else if (current.left != null) {
-			newNode = current.left;
-		} else {
-			if (parent.left.data.equals(current.data)) {
-				parent.left = null;
-			} else {
-				parent.right = null;
-			}
-			return true;
-		}
-		while (newNode.left != null) {
-			newNode = newNode.left;
-		}
-	
-		if (current.right != null && !current.right.data.equals(newNode.data)) {
-			newNode.right = current.right;
-		}
-		if (current.left != null && !current.left.data.equals(newNode.data)) {
-			newNode.left = current.left;
-		}
-		
-		if (parent.left.data.equals(current.data)) {
-			parent.left = newNode;
-		} else {
-			parent.right = newNode;
-		}
-		return true;
 	}
 
 	public String[] inOrder() {
@@ -239,7 +205,7 @@ public class BinaryST {
 				if (current.left != null) {
 					rank += current.occurances + sizeHelper(current.left);
 				} else {
-					rank+= current.occurances;
+					rank += current.occurances;
 				}
 				current = current.right;
 			} else if (current.left != null) {
@@ -271,6 +237,44 @@ public class BinaryST {
 
 		public Node(String data) {
 			this(data, null, null);
+		}
+
+		public Node() {
+		}
+
+		public boolean remove(String s, Node parent) {
+			if (s.compareTo(this.data) < 0) {
+				if (left != null)
+					return left.remove(s, this);
+				else
+					return false;
+			} else if (s.compareTo(this.data) > 0) {
+				if (right != null)
+					return right.remove(s, this);
+				else
+					return false;
+			} else {
+				if (occurances > 1) {
+					occurances--;
+					return true;
+				}
+				if (left != null && right != null) {
+					this.data = right.minValue();
+					right.remove(this.data, this);
+				} else if (parent.left == this) {
+					parent.left = (left != null) ? left : right;
+				} else if (parent.right == this) {
+					parent.right = (left != null) ? left : right;
+				}
+				return true;
+			}
+		}
+
+		private String minValue() {
+			if (left == null)
+				return data;
+			else
+				return left.minValue();
 		}
 
 	} // end of Node
