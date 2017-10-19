@@ -115,7 +115,7 @@ public class BinaryST {
 		while (current != null) {
 			if (s.equals(current.data)) {
 				return true;
-			} else if (s.compareTo(current.data) > 0) {
+			} else if (s.compareTo(current.data) < 0) {
 				current = current.left;
 			} else {
 				current = current.right;
@@ -130,7 +130,7 @@ public class BinaryST {
 		while (current != null) {
 			if (s.equals(current.data)) {
 				return current.occurances;
-			} else if (s.compareTo(current.data) > 0) {
+			} else if (s.compareTo(current.data) < 0) {
 				current = current.left;
 			} else {
 				current = current.right;
@@ -143,10 +143,10 @@ public class BinaryST {
 		// implementation
 		Node parent = root;
 		Node current = root;
-		while (s.compareTo(current.data) < 0) {
+		while (s.compareTo(current.data) != 0) {
 			if (current == null)
 				return false;
-			if (s.compareTo(current.data) > 0) {
+			if (s.compareTo(current.data) < 0) {
 				parent = current;
 				current = current.left;
 			} else {
@@ -217,7 +217,7 @@ public class BinaryST {
 		while (current != null) {
 			if (s.equals(current.data)) {
 				return rank;
-			} else if (s.compareTo(current.data) > 0) {
+			} else if (s.compareTo(current.data) < 0) {
 				current = current.left;
 			} else {
 				current = current.right;
