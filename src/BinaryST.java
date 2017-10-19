@@ -160,7 +160,7 @@ public class BinaryST {
 		}
 		newNode.right = current.right;
 		newNode.left = current.left;
-		if (parent.left.data.equals(current.data)) {
+		if (parent.left.data.equals(current.data)) { 
 			parent.left = newNode;
 		} else {
 			parent.right = newNode;
