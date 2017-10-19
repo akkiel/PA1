@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 // LEAVE THIS FILE IN THE DEFAULT PACKAGE
 //  (i.e., DO NOT add 'package cs311.pa1;' or similar)
 
@@ -10,6 +12,8 @@
 public class BinaryST {
 	// member fields and methods
 	private Node root;
+	private ArrayList<String> INorder = new ArrayList<String>();
+	private ArrayList<String> PREorder = new ArrayList<String>();
 
 	public BinaryST() {
 		// implementation
@@ -166,12 +170,36 @@ public class BinaryST {
 
 	public String[] inOrder() {
 		// implementation
-		return null;
+		INorder = new ArrayList<String>();
+		if (root == null)
+			return null;
+		inOrderHelper(root);
+		return INorder.toArray(new String[INorder.size()]);
+	}
+
+	private void inOrderHelper(Node n) {
+		if (n == null)
+			return;
+		inOrderHelper(n.left);
+		INorder.add(n.data);
+		inOrderHelper(n.right);
 	}
 
 	public String[] preOrder() {
 		// implementation
-		return null;
+		PREorder = new ArrayList<String>();
+		if (root == null)
+			return null;
+		preOrderHelper(root);
+		return PREorder.toArray(new String[PREorder.size()]);
+	}
+
+	private void preOrderHelper(Node n) {
+		if (n == null)
+			return;
+		PREorder.add(n.data);
+		preOrderHelper(n.left);
+		preOrderHelper(n.right);
 	}
 
 	public int rankOf(String s) {
