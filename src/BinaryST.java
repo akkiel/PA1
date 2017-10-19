@@ -204,6 +204,18 @@ public class BinaryST {
 
 	public int rankOf(String s) {
 		// implementation
+		int rank = 0;
+		Node current = root;
+		while (current != null) {
+			if (s.equals(current.data)) {
+				return rank;
+			} else if (s.compareTo(current.data) > 0) {
+				current = current.left;
+			} else {
+				current = current.right;
+			}
+			rank++;
+		}
 		return -1;
 	}
 
