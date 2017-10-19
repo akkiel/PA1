@@ -111,5 +111,6 @@ class tesBST {
 		}
 		
 		assertEquals("Rank of A should be 0", 0, bst.rankOf("A"));
+		assertEquals("Rank of B should be 3", 3, bst.rankOf("B"));
 	}
 }
