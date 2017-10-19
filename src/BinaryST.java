@@ -218,7 +218,7 @@ public class BinaryST {
 			} else {
 				current = current.right;
 			}
-			rank++;
+			rank+= current.occurances;
 		}
 		return -1;
 	}
