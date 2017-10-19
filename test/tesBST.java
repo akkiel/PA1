@@ -1,4 +1,5 @@
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Before;
@@ -49,6 +50,40 @@ class tesBST {
 		assertEquals("Should have size 3 after removing one duplicate", 3,  bst.size());
 		assertEquals("Should have distinctSize 3 after removing one duplicate", 3, bst.distinctSize());
 		assertEquals("Should have height 3 after removing duplicate", 3, bst.height());
+		bst.add("AAA");
+		bst.add("ABB");
+		bst.add("A");
+		assertEquals("Should now have size 6", 6,  bst.size());
+		assertEquals("Should now have distinctSize 6", 6, bst.distinctSize());
+		assertEquals("Should still have height 3", 3, bst.height());
 	}
+	
+	@Test 
+	void testInOrder() {
+		String[] stringsToAdd = {"A", "B", "C", "Z", "Y", "F", "A", "A", "Z"};
+		
+		for(String str : stringsToAdd) {
+			bst.add(str);
+		}
+		
+		String[] expectedInOrder = {"A", "A", "A", "B", "C", "F", "Y", "Z", "Z"};
+		String[] inOrder = bst.inOrder();
 
+		assertArrayEquals(expectedInOrder, bst.inOrder());
+	}
+	
+	@Test
+	void testPreOrder() {
+		String[] stringsToAdd = {"C", "Z", "Y", "F", "A", "A", "Z", "A", "B"};
+		
+		for(String str : stringsToAdd) {
+			bst.add(str);
+		}
+		
+		String[] expectedInOrder = {"C", "A", "A", "A", "B", "Z", "Z", "Y", "F"};
+		
+		assertArrayEquals(expectedInOrder, bst.preOrder());
+		
+		bst.remove("A");
+	}
 }

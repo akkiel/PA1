@@ -143,7 +143,7 @@ public class BinaryST {
 		// implementation
 		Node parent = root;
 		Node current = root;
-		while (s.compareTo(current.data) != 0) {
+		while (s.compareTo(current.data) < 0) {
 			if (current == null)
 				return false;
 			if (s.compareTo(current.data) > 0) {
@@ -185,7 +185,9 @@ public class BinaryST {
 		if (n == null)
 			return;
 		inOrderHelper(n.left);
-		INorder.add(n.data);
+		for(int occur = 0; occur < n.occurances; occur++) {
+			INorder.add(n.data);
+		}
 		inOrderHelper(n.right);
 	}
 
@@ -197,11 +199,13 @@ public class BinaryST {
 		preOrderHelper(root);
 		return PREorder.toArray(new String[PREorder.size()]);
 	}
-
+	
 	private void preOrderHelper(Node n) {
 		if (n == null)
 			return;
-		PREorder.add(n.data);
+		for(int occur = 0; occur < n.occurances; occur++) {
+			PREorder.add(n.data);
+		}
 		preOrderHelper(n.left);
 		preOrderHelper(n.right);
 	}
