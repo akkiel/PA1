@@ -218,10 +218,17 @@ public class BinaryST {
 			if (s.compareTo(current.data) < 0) // move to left subtree
 				current = current.left;
 			else if (s.compareTo(current.data) > 0) {
-				rank += 1 + sizeHelper(current.left);
+				if (current.left != null) {
+					rank += 1 + sizeHelper(current.left);
+				} else {
+					rank++;
+				}
 				current = current.right;
-			} else
+			} else if (current.left != null) {
 				return rank + sizeHelper(current.left);
+			} else {
+				return rank;
+			}
 		}
 		return -1;
 	}
