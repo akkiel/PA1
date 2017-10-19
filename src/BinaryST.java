@@ -164,7 +164,7 @@ public class BinaryST {
 		}
 		newNode.right = current.right;
 		newNode.left = current.left;
-		if (parent.left.data.equals(current.data)) { 
+		if (parent.left.data.equals(current.data)) {
 			parent.left = newNode;
 		} else {
 			parent.right = newNode;
@@ -185,7 +185,7 @@ public class BinaryST {
 		if (n == null)
 			return;
 		inOrderHelper(n.left);
-		for(int occur = 0; occur < n.occurances; occur++) {
+		for (int occur = 0; occur < n.occurances; occur++) {
 			INorder.add(n.data);
 		}
 		inOrderHelper(n.right);
@@ -199,11 +199,11 @@ public class BinaryST {
 		preOrderHelper(root);
 		return PREorder.toArray(new String[PREorder.size()]);
 	}
-	
+
 	private void preOrderHelper(Node n) {
 		if (n == null)
 			return;
-		for(int occur = 0; occur < n.occurances; occur++) {
+		for (int occur = 0; occur < n.occurances; occur++) {
 			PREorder.add(n.data);
 		}
 		preOrderHelper(n.left);
@@ -215,14 +215,13 @@ public class BinaryST {
 		int rank = 0;
 		Node current = root;
 		while (current != null) {
-			if (s.equals(current.data)) {
-				return rank;
-			} else if (s.compareTo(current.data) < 0) {
+			if (s.compareTo(current.data) < 0) // move to left subtree
 				current = current.left;
-			} else {
+			else if (s.compareTo(current.data) > 0) {
+				rank += 1 + sizeHelper(current.left);
 				current = current.right;
-			}
-			rank+= current.occurances;
+			} else
+				return rank + sizeHelper(current.left);
 		}
 		return -1;
 	}

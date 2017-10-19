@@ -9,20 +9,15 @@
 
 import java.util.ArrayList;
 
-
-public class WarWithRollHash
-{
+public class WarWithRollHash {
 	// member fields and methods
-	
-	public WarWithRollHash(String[] s, int k)
-	{
+
+	public WarWithRollHash(String[] s, int k) {
 		// implementation
 	}
-	
-	public ArrayList<String> compute2k()
-	{
+
+	public ArrayList<String> compute2k() {
 		// implementation
 		return null;
 	}
 }
-
