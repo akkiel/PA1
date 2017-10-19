@@ -59,10 +59,10 @@ public class BinaryST {
 	private int sizeHelper(Node n) {
 		int count = n.occurances;
 		if (n.left != null) {
-			count += distinctSizeHelper(n.left);
+			count += sizeHelper(n.left);
 		}
 		if (n.right != null) {
-			count += distinctSizeHelper(n.right);
+			count += sizeHelper(n.right);
 		}
 		return count;
 	}
@@ -71,7 +71,7 @@ public class BinaryST {
 		// implementation
 		return heightHelper(root);
 	}
-
+	
 	private int heightHelper(Node n) {
 		if (n == null) {
 			return 0;
@@ -141,7 +141,7 @@ public class BinaryST {
 
 	public boolean remove(String s) {
 		// implementation
-		Node parent = root;
+		Node parent = root;  
 		Node current = root;
 		while (s.compareTo(current.data) != 0) {
 			if (current == null)
@@ -174,8 +174,14 @@ public class BinaryST {
 		while (newNode.left != null) {
 			newNode = newNode.left;
 		}
-		newNode.right = current.right;
-		newNode.left = current.left;
+	
+		if (current.right != null && !current.right.data.equals(newNode.data)) {
+			newNode.right = current.right;
+		}
+		if (current.left != null && !current.left.data.equals(newNode.data)) {
+			newNode.left = current.left;
+		}
+		
 		if (parent.left.data.equals(current.data)) {
 			parent.left = newNode;
 		} else {

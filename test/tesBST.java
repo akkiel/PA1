@@ -56,6 +56,14 @@ class tesBST {
 		assertEquals("Should now have size 6", 6,  bst.size());
 		assertEquals("Should now have distinctSize 6", 6, bst.distinctSize());
 		assertEquals("Should still have height 3", 3, bst.height());
+		bst.remove("A");
+		assertEquals("Should now have size 5", 5,  bst.size());
+		assertEquals("Should now have distinctSize 5", 5, bst.distinctSize());
+		assertEquals("Should still have height 3", 3, bst.height());
+		bst.remove("WORD");
+		assertEquals("Should now have size 4", 4,  bst.size());
+		assertEquals("Should now have distinctSize 4", 4, bst.distinctSize());
+		assertEquals("Should still have height 3", 3, bst.height());
 	}
 	
 	@Test 
@@ -109,12 +117,15 @@ class tesBST {
 		for(String str : stringsToAdd) {
 			bst.add(str);
 		}
+
+		assertEquals("Rank of Z shouls be 7", 7, bst.rankOf("Z"));
 		assertEquals("Rank of A should be 0", 0, bst.rankOf("A"));
 		assertEquals("Rank of B should be 3", 3, bst.rankOf("B"));
 		assertEquals("Rank of C should be 4", 4, bst.rankOf("C"));
 		assertEquals("Rank of F should be 5", 5, bst.rankOf("F"));
 		assertEquals("Rank of Y should be 6", 6, bst.rankOf("Y"));
+		assertEquals("Rank of Z should be 7", 7, bst.rankOf("Z"));
 		bst.remove("Y");
-		assertEquals("Rank of Z shouls be 6", 6, bst.rankOf("Z"));
+		assertEquals("Rank of Z should be 6 after removing Y", 6, bst.rankOf("Z"));
 	}
 }
