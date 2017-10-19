@@ -9,20 +9,31 @@
 
 import java.util.ArrayList;
 
-
-public class WarWithArray
-{
+public class WarWithArray {
 	// member fields and methods
-	
-	public WarWithArray(String[] s, int k)
-	{
+	private String[] s;
+	private int k;
+	private ArrayList<String> t;
+
+	public WarWithArray(String[] s, int k) {
 		// implementation
+		this.s = s;
+		this.k = k;
+		t = new ArrayList<String>();
 	}
-	
-	public ArrayList<String> compute2k()
-	{
+
+	public ArrayList<String> compute2k() {
 		// implementation
-		return null;
+		for (int i = 0; i < s.length; i++) {
+			for (int j = i; j < s.length; j++) {
+				if (i == j) {
+					t.add(s[i] + s[j]);
+				} else {
+					t.add(s[i] + s[j]);
+					t.add(s[j] + s[i]);
+				}
+			}
+		}
+		return t;
 	}
 }
-
