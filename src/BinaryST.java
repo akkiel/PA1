@@ -221,7 +221,7 @@ public class BinaryST {
 				if (current.left != null) {
 					rank += current.occurances + sizeHelper(current.left);
 				} else {
-					rank++;
+					rank+= current.occurances;
 				}
 				current = current.right;
 			} else if (current.left != null) {
