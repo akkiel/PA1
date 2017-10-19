@@ -154,6 +154,10 @@ public class BinaryST {
 				current = current.right;
 			}
 		}
+		if (current.occurances > 1) {
+			current.occurances--;
+			return true;
+		}
 		Node newNode = current.right;
 		while (current.left != null) {
 			newNode = current.left;
