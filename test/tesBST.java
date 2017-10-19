@@ -85,5 +85,31 @@ class tesBST {
 		assertArrayEquals(expectedInOrder, bst.preOrder());
 		
 		bst.remove("A");
+		String[] newExpectedInOrder = {"C", "A", "A", "B", "Z", "Z", "Y", "F"};
+		
+		assertArrayEquals(newExpectedInOrder, bst.preOrder());
+	}
+	
+	@Test
+	void testFrequency() {
+		String[] stringsToAdd = {"C", "Z", "Y", "F", "A", "A", "Z", "A", "B"};
+		
+		for(String str : stringsToAdd) {
+			bst.add(str);
+		}
+		
+		assertEquals("A Should appear three times", 3, bst.frequency("A"));
+		assertEquals("B Should appear once", 1, bst.frequency("B"));
+	}
+	
+	@Test
+	void testRankOf() {
+		String[] stringsToAdd = {"C", "Z", "Y", "F", "A", "A", "Z", "A", "B"};
+		
+		for(String str : stringsToAdd) {
+			bst.add(str);
+		}
+		
+		assertEquals("Rank of A should be 0", 0, bst.rankOf("A"));
 	}
 }
