@@ -219,7 +219,7 @@ public class BinaryST {
 				current = current.left;
 			else if (s.compareTo(current.data) > 0) {
 				if (current.left != null) {
-					rank += 1 + sizeHelper(current.left);
+					rank += current.occurances + sizeHelper(current.left);
 				} else {
 					rank++;
 				}
