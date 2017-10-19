@@ -100,6 +100,7 @@ public class BinaryST {
 				}
 			} else {
 				current.occurances++;
+				return;
 			}
 		}
 	}
@@ -131,7 +132,7 @@ public class BinaryST {
 				current = current.right;
 			}
 		}
-		return -1;
+		return 0;
 	}
 
 	public boolean remove(String s) {
