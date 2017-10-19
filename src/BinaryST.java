@@ -115,7 +115,7 @@ public class BinaryST {
 		while (current != null) {
 			if (s.equals(current.data)) {
 				return true;
-			} else if (s.compareTo(current.data) > 0) {
+			} else if (s.compareTo(current.data) < 0) {
 				current = current.left;
 			} else {
 				current = current.right;
@@ -130,7 +130,7 @@ public class BinaryST {
 		while (current != null) {
 			if (s.equals(current.data)) {
 				return current.occurances;
-			} else if (s.compareTo(current.data) > 0) {
+			} else if (s.compareTo(current.data) < 0) {
 				current = current.left;
 			} else {
 				current = current.right;
@@ -143,10 +143,10 @@ public class BinaryST {
 		// implementation
 		Node parent = root;
 		Node current = root;
-		while (s.compareTo(current.data) < 0) {
+		while (s.compareTo(current.data) != 0) {
 			if (current == null)
 				return false;
-			if (s.compareTo(current.data) > 0) {
+			if (s.compareTo(current.data) < 0) {
 				parent = current;
 				current = current.left;
 			} else {
@@ -164,7 +164,7 @@ public class BinaryST {
 		}
 		newNode.right = current.right;
 		newNode.left = current.left;
-		if (parent.left.data.equals(current.data)) { 
+		if (parent.left.data.equals(current.data)) {
 			parent.left = newNode;
 		} else {
 			parent.right = newNode;
@@ -185,7 +185,7 @@ public class BinaryST {
 		if (n == null)
 			return;
 		inOrderHelper(n.left);
-		for(int occur = 0; occur < n.occurances; occur++) {
+		for (int occur = 0; occur < n.occurances; occur++) {
 			INorder.add(n.data);
 		}
 		inOrderHelper(n.right);
@@ -199,11 +199,11 @@ public class BinaryST {
 		preOrderHelper(root);
 		return PREorder.toArray(new String[PREorder.size()]);
 	}
-	
+
 	private void preOrderHelper(Node n) {
 		if (n == null)
 			return;
-		for(int occur = 0; occur < n.occurances; occur++) {
+		for (int occur = 0; occur < n.occurances; occur++) {
 			PREorder.add(n.data);
 		}
 		preOrderHelper(n.left);
@@ -214,17 +214,16 @@ public class BinaryST {
 		// implementation
 		int rank = 0;
 		Node current = root;
-		  while (current != null) {
-		    if (s.compareTo(current.data) < 0) // move to left subtree
-		      current = current.left;
-		    else if (s.compareTo(current.data) > 0) {
-		      rank += 1 + sizeHelper(current.left);
-		      current = current.right;
-		    }
-		    else 
-		      return rank + sizeHelper(current.left);
-		  }
-		  return -1; // not found
+		while (current != null) {
+			if (s.compareTo(current.data) < 0) // move to left subtree
+				current = current.left;
+			else if (s.compareTo(current.data) > 0) {
+				rank += 1 + sizeHelper(current.left);
+				current = current.right;
+			} else
+				return rank + sizeHelper(current.left);
+		}
+		return -1;
 	}
 
 	/*****************************************************
