@@ -39,6 +39,8 @@ public class WarWithArray {
 	}
 	
 	private void verify(String s) {
-		
+		if (!t.contains(s)) {
+			t.add(s);
+		}
 	}
 }
