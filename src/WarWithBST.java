@@ -14,17 +14,34 @@ public class WarWithBST {
 	private String[] s;
 	private int k;
 	private BinaryST bst;
+	private ArrayList<String> t;
 
 	public WarWithBST(String[] s, int k) {
 		// implementation
 		this.s = s;
 		this.k = k;
 		this.bst = new BinaryST(s);
+		this.t = new ArrayList<String>();
 	}
-
+	
 	public ArrayList<String> compute2k() {
-		// implementation
-		
-		return null;
+		s = bst.inOrder();
+		for (int i = 0; i < s.length; i++) {
+			for (int j = i; j < s.length; j++) {
+				if (i == j) {
+					verify(s[i] + s[j]);
+				} else {
+					verify(s[i] + s[j]);
+					verify(s[j] + s[i]);
+				}
+			}
+		}
+		return t;
+	}
+	
+	private void verify(String s) {
+		if (!t.contains(s)) {
+			t.add(s);
+		}
 	}
 }
