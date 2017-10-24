@@ -24,7 +24,6 @@ public class WarWithArray {
 
 	public ArrayList<String> compute2k() {
 		// implementation
-		// Compute canidates
 		for (int i = 0; i < s.length; i++) {
 			for (int j = i; j < s.length; j++) {
 				if (i == j) {
@@ -37,10 +36,23 @@ public class WarWithArray {
 		}
 		return t;
 	}
-	
-	private void verify(String s) {
-		if (!t.contains(s)) {
-			t.add(s);
+
+	private void verify(String verify) {
+		String sub;
+		boolean toAdd = true;
+		for (int i = 1; i < (2*k)-2; i++) {
+			sub = verify.substring(i, k + i);
+			toAdd = false;
+			for (String ss : s) {
+				if(ss.equals(sub)) {
+					toAdd = true;
+					break;
+				}
+			}
+			if (!toAdd) {
+				return;
+			}
 		}
+		t.add(verify);
 	}
 }

@@ -7,28 +7,76 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 class testWarWithArray {
-	
-	
+
 	@Test
-	public void testCompute2k() {
-
-		String[] strSet = {"AAA", "BBB", "CCC"};
-		WarWithArray arr = new WarWithArray(strSet, 3);
-		
+	public void testZero() {
+		String[] strSet = { "AA", "BB" };
+		// AAAA
+		// AABB x
+		// BBAA x
+		// BBBB
+		WarWithArray arr = new WarWithArray(strSet, 2);
 		ArrayList<String> computed = arr.compute2k();
-		
-		assertEquals("Computed list size should be strSet.size ^ 2 when there are no duplicates in strSet", strSet.length * strSet.length, computed.size());
-		
-		String[] newStrSet = {"AAA", "BBB", "CCC", "AAA", "CCC"};
-
-		WarWithArray newArr = new WarWithArray(newStrSet, 3);
-		ArrayList<String> newComputed = newArr.compute2k();
-		
-		assertTrue("Both computed lists should be identical size the only difference is duplicated", computed.containsAll(newComputed));
-		
+		assertEquals("Computed list size should be 2", 2, computed.size());
 	}
-	
-	
-	
-	
+
+	@Test
+	public void testOne() {
+		String[] strSet = { "AA", "BB", "AB" };
+		// AAAA
+		// AABB
+		// BBAA x
+		// AAAB
+		// ABAA x
+		// BBBB
+		// BBAB x
+		// ABBB
+		// ABAB x
+		// only two possible outcomes
+		WarWithArray arr = new WarWithArray(strSet, 2);
+		ArrayList<String> computed = arr.compute2k();
+		assertEquals("Computed list size should be 5", 5, computed.size());
+	}
+
+	@Test
+	public void testTwo() {
+		String[] strSet = { "AA", "BB", "AB", "BA" };
+		// AAAA
+		// AABB
+		// BBAA
+		// AAAB
+		// ABAA
+		// AABA
+		// BAAA
+		// BBBB
+		// BBAB
+		// ABBB
+		// BBBA
+		// BABB
+		// ABAB
+		// ABBA
+		// BAAB
+		// BABA
+		// only two possible outcomes
+		WarWithArray arr = new WarWithArray(strSet, 2);
+		ArrayList<String> computed = arr.compute2k();
+		assertEquals("Computed list size should be 16", 16, computed.size());
+	}
+
+	@Test
+	public void testThree() {
+		String[] strSet = { "AAA", "ABA", "BAB" };
+		// AAAAAA
+		// AAAABA x
+		// ABAAAA x
+		// AAABAB x
+		// BABAAA x
+		// ABAABA x
+		// ABABAB
+		// BABABA
+		WarWithArray arr = new WarWithArray(strSet, 3);
+		ArrayList<String> computed = arr.compute2k();
+		assertEquals("Computer list size should be 3", 3, computed.size());
+	}
+
 }
