@@ -19,6 +19,7 @@ public class WarWithRollHash {
 	private Hashtable<Integer, String> hTab;
 	private int k;
 	private ArrayList<String> t;
+	private int power;
 
 	public WarWithRollHash(String[] s, int k) {
 		// implementation
@@ -29,33 +30,23 @@ public class WarWithRollHash {
 		for (String ss : s) {
 			this.hTab.put(hashStr(ss), ss);
 		}
+		power = 1;
+		for (int i = 0; i < k; i++)
+			power = (power * PRIME_BASE) % PRIME_MOD;
 	}
 
 	private void verify(String verify) {
-		String sub;
 		boolean toAdd = true;
+		int key = hashStr(verify.substring(0, k));
 		for (int i = 1; i < (2 * k) - 2; i++) {
-			sub = verify.substring(i, k + i);
-			int key = hashStr(sub);
-			int key2 = 0;
-			int power = 1;
-			for (int j = 0; j < k; j++) {
-				power = (power * PRIME_BASE) % PRIME_MOD;
-			}
-			for (int a = 0; a < 2 * k; a++) {
-				key2 = key2 * PRIME_BASE + verify.charAt(a);
-				key2 %= PRIME_MOD;
-				if (a >= k) {
-					key2 -= power * verify.charAt(a - k) % PRIME_MOD;
-					if (key2 < 0) {
-						key2 += PRIME_MOD;
-					}
-				}
-			}
 			toAdd = false;
-			// compute rolling hash
-			key = roll(verify, key, i);
-			if (hTab.contains(key)) {
+			key = key * PRIME_BASE + verify.charAt(i + k - 1);
+			key %= PRIME_MOD;
+			key -= power * verify.charAt(i - 1) % PRIME_MOD;
+			if (key < 0)
+				key += PRIME_MOD;
+
+			if (hTab.containsKey(key)) {
 				toAdd = true;
 			}
 			if (!toAdd) {
@@ -87,10 +78,5 @@ public class WarWithRollHash {
 			ret %= PRIME_MOD;
 		}
 		return ret;
-	}
-
-	private int roll(String str, int key, int i) {
-
-		return 0;
 	}
 }

@@ -20,7 +20,7 @@ public class WarWithHash {
 	public WarWithHash(String[] s, int k) {
 		this.s = s;
 		this.k = k;
-
+		this.t = new ArrayList<String>();
 		hSet = new HashSet<String>();
 		for (String ss : s) {
 			hSet.add(ss);

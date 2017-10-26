@@ -1,13 +1,11 @@
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.ArrayList;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-class testWarWithHash {
+class testWarWithRollHash {
 
 	@Test
 	public void testZero() {
@@ -16,7 +14,7 @@ class testWarWithHash {
 		// AABB x
 		// BBAA x
 		// BBBB
-		WarWithHash arr = new WarWithHash(strSet, 2);
+		WarWithRollHash arr = new WarWithRollHash(strSet, 2);
 		ArrayList<String> computed = arr.compute2k();
 		assertEquals("Computed list size should be 2", 2, computed.size());
 	}
@@ -34,7 +32,7 @@ class testWarWithHash {
 		// ABBB
 		// ABAB x
 		// only two possible outcomes
-		WarWithHash arr = new WarWithHash(strSet, 2);
+		WarWithRollHash arr = new WarWithRollHash(strSet, 2);
 		ArrayList<String> computed = arr.compute2k();
 		assertEquals("Computed list size should be 5", 5, computed.size());
 	}
@@ -59,7 +57,7 @@ class testWarWithHash {
 		// BAAB
 		// BABA
 		// only two possible outcomes
-		WarWithHash arr = new WarWithHash(strSet, 2);
+		WarWithRollHash arr = new WarWithRollHash(strSet, 2);
 		ArrayList<String> computed = arr.compute2k();
 		assertEquals("Computed list size should be 16", 16, computed.size());
 	}
@@ -75,7 +73,7 @@ class testWarWithHash {
 		// ABAABA x
 		// ABABAB
 		// BABABA
-		WarWithHash arr = new WarWithHash(strSet, 3);
+		WarWithRollHash arr = new WarWithRollHash(strSet, 3);
 		ArrayList<String> computed = arr.compute2k();
 		assertEquals("Computer list size should be 3", 3, computed.size());
 	}
