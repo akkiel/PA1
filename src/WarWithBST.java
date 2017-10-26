@@ -23,7 +23,7 @@ public class WarWithBST {
 		this.bst = new BinaryST(s);
 		this.t = new ArrayList<String>();
 	}
-	
+
 	public ArrayList<String> compute2k() {
 		s = bst.inOrder();
 		for (int i = 0; i < s.length; i++) {
@@ -38,10 +38,20 @@ public class WarWithBST {
 		}
 		return t;
 	}
-	
-	private void verify(String s) {
-		if (!t.contains(s)) {
-			t.add(s);
+
+	private void verify(String verify) {
+		String sub;
+		boolean toAdd = true;
+		for (int i = 1; i < (2 * k) - 2; i++) {
+			sub = verify.substring(i, k + i);
+			toAdd = false;
+			if (bst.search(sub)) {
+				toAdd = true;
+			}
+			if (!toAdd) {
+				return;
+			}
 		}
+		t.add(verify);
 	}
 }
