@@ -14,12 +14,17 @@ public class WarWithHash {
 	// member fields and methods
 	private String[] s;
 	private int k;
+	private ArrayList<String> t;
 	private HashSet<String> hSet;
 
 	public WarWithHash(String[] s, int k) {
 		this.s = s;
 		this.k = k;
+
 		hSet = new HashSet<String>();
+		for (String ss : s) {
+			hSet.add(ss);
+		}
 	}
 
 	public ArrayList<String> compute2k() {
@@ -33,18 +38,23 @@ public class WarWithHash {
 				}
 			}
 		}
-		return hSetToArrayList();
-	}
-	
-	private void verify(String s) {
-		if (!hSet.contains(s)) {
-			hSet.add(s);
-		}
-	}
-	
-	private ArrayList<String> hSetToArrayList() {
-		ArrayList<String> t = new ArrayList<String>();
-		t.addAll(hSet);
 		return t;
 	}
+	
+	private void verify(String verify) {
+		String sub;
+		boolean toAdd = true;
+		for (int i = 1; i < (2 * k) - 2; i++) {
+			sub = verify.substring(i, k + i);
+			toAdd = false;
+			if (hSet.contains(sub)) {
+				toAdd = true;
+			}
+			if (!toAdd) {
+				return;
+			}
+		}
+		t.add(verify);
+	}
+	
 }

@@ -20,4 +20,9 @@ public class WarWithRollHash {
 		// implementation
 		return null;
 	}
+	
+	public int hashStr(String str) {
+		
+		return 0;
+	}
 }
