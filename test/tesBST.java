@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
+
 class tesBST {
 
 	BinaryST bst = new BinaryST();

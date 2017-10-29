@@ -9,6 +9,11 @@ import java.util.ArrayList;
 // DO NOT INCLUDE LIBRARIES OUTSIDE OF THE JAVA STANDARD LIBRARY
 //  (i.e., you may include java.util.ArrayList etc. here, but not junit, apache commons, google guava, etc.)
 
+/**
+ * 
+ * @author Zac Schreck, Adam Kiel
+ *
+ */
 public class BinaryST {
 	// member fields and methods
 	private Node root;
@@ -58,7 +63,7 @@ public class BinaryST {
 		// implementation
 		return heightHelper(root);
 	}
-
+	
 	private int heightHelper(Node n) {
 		if (n == null) {
 			return 0;

@@ -8,7 +8,11 @@
 //  (i.e., you may include java.util.ArrayList etc. here, but not junit, apache commons, google guava, etc.)
 
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author Zac Schreck, Adam Kiel
+ *
+ */
 public class WarWithArray {
 	// member fields and methods
 	private String[] s;

@@ -9,7 +9,11 @@
 
 import java.util.ArrayList;
 import java.util.Hashtable;
-
+/**
+ * 
+ * @author Zac Schreck, Adam Kiel
+ *
+ */
 public class WarWithRollHash {
 	// member fields and methods
 	private static int PRIME_BASE = 17;

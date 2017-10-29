@@ -9,7 +9,11 @@
 
 import java.util.ArrayList;
 import java.util.HashSet;
-
+/**
+ * 
+ * @author Zac Schreck, Adam Kiel
+ *
+ */
 public class WarWithHash {
 	// member fields and methods
 	private String[] s;
