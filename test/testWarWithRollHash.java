@@ -73,6 +73,7 @@ class testWarWithRollHash {
 		// ABAABA x
 		// ABABAB
 		// BABABA
+		// BABBAB x
 		WarWithRollHash arr = new WarWithRollHash(strSet, 3);
 		ArrayList<String> computed = arr.compute2k();
 		assertEquals("Computer list size should be 3", 3, computed.size());
