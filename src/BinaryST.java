@@ -12,16 +12,22 @@ import java.util.ArrayList;
 public class BinaryST {
 	// member fields and methods
 	private Node root;
+	private int size;
+	private int dsize;
 	private ArrayList<String> INorder = new ArrayList<String>();
 	private ArrayList<String> PREorder = new ArrayList<String>();
 
 	public BinaryST() {
 		// implementation
 		root = null;
+		size = 0;
+		dsize = 0;
 	}
 
 	public BinaryST(String[] s) {
 		// implementation
+		size = 0;
+		dsize = 0;
 		for (int i = 0; i < s.length; i++) {
 			add(s[i]);
 		}
@@ -29,34 +35,15 @@ public class BinaryST {
 
 	public int distinctSize() {
 		// implementation
-		int count = 0;
-		if (root != null) {
-			count = distinctSizeHelper(root);
-		}
-		return count;
-	}
-
-	private int distinctSizeHelper(Node n) {
-		int count = 1;
-		if (n.left != null) {
-			count += distinctSizeHelper(n.left);
-		}
-		if (n.right != null) {
-			count += distinctSizeHelper(n.right);
-		}
-		return count;
+		return dsize;
 	}
 
 	public int size() {
 		// implementation
-		int count = 0;
-		if (root != null) {
-			count = sizeHelper(root);
-		}
-		return count;
+		return size;
 	}
 
-	private int sizeHelper(Node n) {
+	public int sizeHelper(Node n) {
 		int count = n.occurances;
 		if (n.left != null) {
 			count += sizeHelper(n.left);
@@ -84,6 +71,8 @@ public class BinaryST {
 		Node newNode = new Node(s);
 		if (root == null) {
 			root = newNode;
+			size += 1;
+			dsize += newNode.occurances;
 			return;
 		}
 		Node current = root;
@@ -94,16 +83,21 @@ public class BinaryST {
 				current = current.left;
 				if (current == null) {
 					parent.left = newNode;
+					size += 1;
+					dsize += newNode.occurances;
 					return;
 				}
 			} else if (s.compareTo(current.data) > 0) {
 				current = current.right;
 				if (current == null) {
 					parent.right = newNode;
+					size += 1;
+					dsize += newNode.occurances;
 					return;
 				}
 			} else {
 				current.occurances++;
+				dsize += 1;
 				return;
 			}
 		}
