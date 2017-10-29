@@ -71,8 +71,8 @@ public class BinaryST {
 		Node newNode = new Node(s);
 		if (root == null) {
 			root = newNode;
-			size += 1;
-			dsize += newNode.occurances;
+			dsize += 1;
+			size += newNode.occurances;
 			return;
 		}
 		Node current = root;
@@ -83,21 +83,21 @@ public class BinaryST {
 				current = current.left;
 				if (current == null) {
 					parent.left = newNode;
-					size += 1;
-					dsize += newNode.occurances;
+					dsize += 1;
+					size += newNode.occurances;
 					return;
 				}
 			} else if (s.compareTo(current.data) > 0) {
 				current = current.right;
 				if (current == null) {
 					parent.right = newNode;
-					size += 1;
-					dsize += newNode.occurances;
+					dsize += 1;
+					size += newNode.occurances;
 					return;
 				}
 			} else {
 				current.occurances++;
-				dsize += 1;
+				size += 1;
 				return;
 			}
 		}
@@ -250,6 +250,7 @@ public class BinaryST {
 			} else {
 				if (occurances > 1) {
 					occurances--;
+					size -= 1;
 					return true;
 				}
 				if (left != null && right != null) {
@@ -257,8 +258,12 @@ public class BinaryST {
 					right.remove(this.data, this);
 				} else if (parent.left == this) {
 					parent.left = (left != null) ? left : right;
+					dsize--;
+					size--;
 				} else if (parent.right == this) {
 					parent.right = (left != null) ? left : right;
+					dsize--;
+					size--;
 				}
 				return true;
 			}
