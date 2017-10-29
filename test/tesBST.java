@@ -64,6 +64,11 @@ class tesBST {
 		assertEquals("Should now have size 4", 4,  bst.size());
 		assertEquals("Should now have distinctSize 4", 4, bst.distinctSize());
 		assertEquals("Should still have height 3", 3, bst.height());
+		bst.remove("ABB");
+		assertEquals("Should now have size 3", 3,  bst.size());
+		assertEquals("Should now have distinctSize 3", 3, bst.distinctSize());
+		assertEquals("Should still have height 2", 2, bst.height());
+		
 	}
 	
 	@Test 
